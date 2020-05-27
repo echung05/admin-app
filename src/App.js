@@ -111,7 +111,7 @@ class App extends Component {
                 : <Card.Body><Button variant="info" onClick={signInWithGoogle}>Sign in with Google</Button></Card.Body>
             }</Card>
         </Container>
-        <Card style={{ margin: "0 auto", marginTop: "5vh", width: "30vw", float: "none" }}>
+        <Card bg="light" style={{ margin: "0 auto", marginTop: "5vh", width: "30vw", float: "none" }}>
           <Card.Body style={{ marginTop: "3vh", marginBottom: "3vh" }}>
             <section className='add-item'>
               <form onSubmit={this.handleSubmit}>

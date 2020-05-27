@@ -1,5 +1,5 @@
 const config = {
-    apiKey: "AIzaSyCuElgj2aA-43aVraBgoPAgYzwDIn1Y36c",
+    apiKey: process.env.REACT_APP_apiKey,
     authDomain: "tjes-admin.firebaseapp.com",
     databaseURL: "https://tjes-admin.firebaseio.com",
     projectId: "tjes-admin",

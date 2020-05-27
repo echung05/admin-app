@@ -10,7 +10,7 @@ import Container from "react-bootstrap/Container"
 import Form from "react-bootstrap/Form"
 import Accordion from "react-bootstrap/Accordion"
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootswatch/dist/litera/bootstrap.min.css';
 
 import React, { Component } from 'react';
 import './App.css';

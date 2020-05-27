@@ -111,18 +111,31 @@ class App extends Component {
                 : <Card.Body><Button variant="info" onClick={signInWithGoogle}>Sign in with Google</Button></Card.Body>
             }</Card>
         </Container>
-        <Card style={{ margin: "0 auto", marginTop: "5vh", width: "50vw", float: "none" }}>
-          <Container>
+        <Card style={{ margin: "0 auto", marginTop: "5vh", width: "30vw", float: "none" }}>
+          <Card.Header>
+            Add a student:
+          </Card.Header>
+          <Card.Body style={{ marginTop: "3vh", marginBottom: "3vh" }}>
             <section className='add-item'>
               <form onSubmit={this.handleSubmit}>
-                <input type="text" name="currStudent" placeholder="Full Name" onChange={this.handleChange} value={this.state.currStudent} />
-                <input type="text" name="stuTeacher" placeholder="Teacher" onChange={this.handleChange} value={this.state.stuTeacher} />
-                <input type="text" name="stuClass" placeholder="Class" onChange={this.handleChange} value={this.state.stuClass} />
-                <input type="text" name="stuDesc" placeholder="Basic Info" onChange={this.handleChange} value={this.state.stuDesc} />
-                <button>Add Student</button>
+                <div style={{ marginTop: "1vh" }}>
+                  <input type="text" name="currStudent" placeholder="Full Name" onChange={this.handleChange} value={this.state.currStudent} />
+                </div>
+                <div style={{ marginTop: "1vh" }}>
+                  <input type="text" name="stuTeacher" placeholder="Teacher" onChange={this.handleChange} value={this.state.stuTeacher} />
+                </div>
+                <div style={{ marginTop: "1vh" }}>
+                  <input type="text" name="stuClass" placeholder="Class" onChange={this.handleChange} value={this.state.stuClass} />
+                </div>
+                <div style={{ marginTop: "1vh" }}>
+                  <input type="text" name="stuDesc" placeholder="Basic Info" onChange={this.handleChange} value={this.state.stuDesc} />
+                </div>
+                <div style={{ marginTop: "1vh" }}>
+                  <Button variant="info">Add</Button>
+                </div>
               </form>
             </section>
-          </Container>
+          </Card.Body>
         </Card>
 
         <Accordion style={{ margin: "0 auto", marginTop: "5vh", marginBottom: "10vh", width: "30vw", float: "none" }}>

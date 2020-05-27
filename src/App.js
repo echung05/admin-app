@@ -112,9 +112,6 @@ class App extends Component {
             }</Card>
         </Container>
         <Card style={{ margin: "0 auto", marginTop: "5vh", width: "30vw", float: "none" }}>
-          <Card.Header>
-            Add a student:
-          </Card.Header>
           <Card.Body style={{ marginTop: "3vh", marginBottom: "3vh" }}>
             <section className='add-item'>
               <form onSubmit={this.handleSubmit}>
@@ -131,7 +128,7 @@ class App extends Component {
                   <input type="text" name="stuDesc" placeholder="Basic Info" onChange={this.handleChange} value={this.state.stuDesc} />
                 </div>
                 <div style={{ marginTop: "1vh" }}>
-                  <Button variant="info">Add</Button>
+                  <button>Add Student</button>
                 </div>
               </form>
             </section>

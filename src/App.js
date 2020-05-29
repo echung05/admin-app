@@ -34,7 +34,7 @@ class App extends Component {
       isEditingS: false,
       isEditingT: false,
 
-      dispClass: "2",
+      dispClass: "0",
     });
   }
 
@@ -322,11 +322,11 @@ class App extends Component {
           <Col>
             {user ?
               (<Card style={{ width: "20vw" }}>
-                <Card.Header className="bg-secondary"> Select a class:
+                <Card.Header className="bg-light"> Select a class:
                     <div>
-                    <Button variant="light" onClick={() => this.setState({ dispClass: "1" })}>1</Button> {' '}
-                    <Button variant="light" onClick={() => this.setState({ dispClass: "2" })}>2</Button> {' '}
-                    <Button variant="light" onClick={() => this.setState({ dispClass: "3" })}>3</Button>
+                    <Button variant="secondary" onClick={() => this.setState({ dispClass: "1" })}>1</Button> {' '}
+                    <Button variant="secondary" onClick={() => this.setState({ dispClass: "2" })}>2</Button> {' '}
+                    <Button variant="secondary" onClick={() => this.setState({ dispClass: "3" })}>3</Button>
                   </div>
                 </Card.Header>
                 {this.state.teachers.map((t) => {

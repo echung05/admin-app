@@ -10,7 +10,6 @@ import Container from "react-bootstrap/Container"
 import Row from "react-bootstrap/Row"
 import Col from "react-bootstrap/Col"
 import Accordion from "react-bootstrap/Accordion"
-import ButtonGroup from "react-bootstrap/ButtonGroup"
 import React, { Component } from 'react';
 import './App.css';
 
@@ -175,7 +174,8 @@ class App extends Component {
     } else {
       button = <button>Add Student</button>
     }
-
+    let uid;
+    user ? (uid = user.uid) : (uid = "")
     return (
       <div className="App">
         <NavB />
@@ -184,7 +184,7 @@ class App extends Component {
             <Container>
               <Card bg="light" style={{ margin: "0 auto", width: "20vw", float: "none" }}>{
                 user
-                  ? <Card.Header>Hello, {user.displayName}</Card.Header>
+                  ? <Card.Header>Hello, {user.displayName} </Card.Header>
                   : <Card.Header>Please sign in.</Card.Header>
               }
                 {
@@ -195,7 +195,7 @@ class App extends Component {
             </Container>
             <Card bg="light" style={{ margin: "0 auto", marginTop: "3vh", width: "20vw", float: "none" }}>
               <Card.Header>Student</Card.Header>
-              {user ?
+              {user && uid === "cO61aimi5IRjspDj7HQwrpDp4T63" ?
                 (<Card.Body style={{ marginTop: "1vh", marginBottom: "3vh" }}>
                   <section className='add-item'>
                     <form onSubmit={this.handleSubmit}>
@@ -220,12 +220,12 @@ class App extends Component {
                     </form>
                   </section>
                 </Card.Body>)
-                : <Card.Body> Sign in to add, edit, and delete students from the roster. </Card.Body>
+                : <Card.Body> Sign in as admin to add, edit, and delete students from the roster. </Card.Body>
               }
             </Card>
             <Card bg="light" style={{ margin: "0 auto", marginTop: "3vh", marginBottom: "3vh", width: "20vw", float: "none" }}>
               <Card.Header>Teacher</Card.Header>
-              {user ?
+              {user && uid === "cO61aimi5IRjspDj7HQwrpDp4T63" ?
                 (<Card.Body style={{ marginTop: "1vh", marginBottom: "3vh" }}>
                   <section className='add-item'>
                     <form onSubmit={this.handleSave}>
@@ -249,14 +249,14 @@ class App extends Component {
                     </form>
                   </section>
                 </Card.Body>)
-                : <Card.Body>Sign in to reassign classes to teachers.</Card.Body>
+                : <Card.Body>Sign in as admin to reassign classes to teachers.</Card.Body>
               }
             </Card>
           </Col>
           <Col>
             {user ?
               (<Accordion style={{ margin: "0 auto", marginBottom: "10vh", width: "20vw", float: "none" }}>
-                <Card.Header className="bg-secondary">Student Roster </Card.Header>
+                <Card.Header className="bg-info text-light">Student Roster </Card.Header>
                 {this.state.students.map((s) => {
                   return (
                     <Card key={s.id}>
@@ -266,20 +266,17 @@ class App extends Component {
                         </Accordion.Toggle>
                       </Card.Header>
                       <Accordion.Collapse eventKey={s.id}>
-                        <Card.Body text="dark">
-                          <div>About: {s.desc}</div>
-                          <div>Class: {s.class}</div>
-                          <Button
-                            variant="outline-info"
-                            onClick={() => this.updateStudent(s)}>
-                            Edit
-                </Button> {' '}
-                          <Button
-                            variant="outline-danger"
-                            onClick={() => this.removeStudent(s.id)}>
-                            Delete
-                </Button>
-                        </Card.Body>
+                        {uid === "cO61aimi5IRjspDj7HQwrpDp4T63" ?
+                          (<Card.Body text="dark">
+                            <div>About: {s.desc}</div>
+                            <div>Class: {s.class}</div>
+                            <Button variant="outline-info" onClick={() => this.updateStudent(s)}> Edit </Button> {' '}
+                            <Button variant="outline-danger" onClick={() => this.removeStudent(s.id)}> Delete </Button>
+                          </Card.Body>) :
+                          (<Card.Body text="dark">
+                            <div>About: {s.desc}</div>
+                            <div>Class: {s.class}</div>
+                          </Card.Body>)}
                       </Accordion.Collapse>
                     </Card>
                   );
@@ -292,7 +289,7 @@ class App extends Component {
           <Col>
             {user ?
               (<Accordion style={{ margin: "0 auto", marginBottom: "10vh", width: "20vw", float: "none" }}>
-                <Card.Header className="bg-secondary">Teacher List </Card.Header>
+                <Card.Header className="bg-info text-light">Teacher List </Card.Header>
                 {this.state.teachers.map((t) => {
                   return (
                     <Card key={t.id}>
@@ -302,14 +299,18 @@ class App extends Component {
                         </Accordion.Toggle>
                       </Card.Header>
                       <Accordion.Collapse eventKey={t.id}>
-                        <Card.Body text="dark">
-                          <div>Class: {t.class}</div>
-                          <Button
-                            variant="outline-info"
-                            onClick={() => this.updateTeacher(t)}>
-                            Edit
+                        {uid === "cO61aimi5IRjspDj7HQwrpDp4T63" ?
+                          (<Card.Body text="dark">
+                            <div>Class: {t.class}</div>
+                            <Button
+                              variant="outline-info"
+                              onClick={() => this.updateTeacher(t)}>
+                              Edit
                           </Button>
-                        </Card.Body>
+                          </Card.Body>) :
+                          (<Card.Body text="dark">
+                            <div>Class: {t.class}</div>
+                          </Card.Body>)}
                       </Accordion.Collapse>
                     </Card>
                   );
@@ -333,7 +334,7 @@ class App extends Component {
                   return (
                     <div>
                       {t.class === this.state.dispClass ?
-                        <Card bg="info" text="light"> Teacher: {t.teacher}</Card>
+                        <Card bg="secondary"> Teacher: {t.teacher}</Card>
                         : ""
                       }
                     </div>
